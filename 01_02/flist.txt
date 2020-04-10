@@ -1,0 +1,23 @@
+$Recycle.Bin
+Boot-VHD
+da
+Documents and Settings
+inetpub
+iso
+MSOCache
+My_Share
+my_tcpip
+New Folder
+pagefile.sys
+PerfLogs
+Program Files
+Program Files (x86)
+ProgramData
+Recovery
+swapfile.sys
+System Volume Information
+TEMP
+test
+Users
+VMs
+Windows
