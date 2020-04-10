@@ -1,0 +1,61 @@
+[INFO  - 2020-01-03T06:33:12.401Z] GhostDriver - Main - running on port 51992
+[INFO  - 2020-01-03T06:33:16.916Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2020-01-03T06:33:16.916Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.customHeaders:  - {}
+[INFO  - 2020-01-03T06:33:16.916Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2020-01-03T06:33:16.916Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: ecf61ff0-2df2-11ea-a622-0b513187061a
+[ERROR - 2020-01-03T06:33:17.658Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - msg: TypeError: null is not an object (evaluating 'da_ua.match(/Version\/([0-9\.]+)/i)[1]')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:17.659Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - stack:
+  searchBrowserVersion (https://ssl.pstatic.net/tveta/libs/assets/js/pc/main/min/pc.veta.core.min.js?20180328:1)
+  init (https://ssl.pstatic.net/tveta/libs/assets/js/pc/main/min/pc.veta.core.min.js?20180328:1)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:17.664Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - msg: TypeError: null is not an object (evaluating 'da_ua.match(/Version\/([0-9\.]+)/i)[1]')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:17.664Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - stack:
+  searchBrowserVersion (https://ssl.pstatic.net/tveta/libs/assets/js/pc/main/min/pc.veta.core.min.js?20170222:1)
+  init (https://ssl.pstatic.net/tveta/libs/assets/js/pc/main/min/pc.veta.core.min.js?20170222:1)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:17.690Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - msg: TypeError: null is not an object (evaluating 'da_ua.match(/Version\/([0-9\.]+)/i)[1]')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:17.691Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - stack:
+  searchBrowserVersion (https://ssl.pstatic.net/tveta/libs/assets/js/pc/main/min/pc.veta.core.min.js?20180423:1)
+  init (https://ssl.pstatic.net/tveta/libs/assets/js/pc/main/min/pc.veta.core.min.js?20180423:1)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:17.698Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'new Nimp')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:17.698Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - stack:
+  lazyLoading (https://nv.veta.naver.com/fxshow?su=SU10079&nrefreshx=0:36)
+  onload (https://nv.veta.naver.com/fxshow?su=SU10079&nrefreshx=0:20)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:17.712Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'new Nimp')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:17.712Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - stack:
+  initAd (https://nv.veta.naver.com/fxshow?su=SU10078&nrefreshx=0:76)
+  lazyLoading (https://nv.veta.naver.com/fxshow?su=SU10078&nrefreshx=0:71)
+  onload (https://nv.veta.naver.com/fxshow?su=SU10078&nrefreshx=0:61)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:18.085Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - msg: TypeError: null is not an object (evaluating 'da_ua.match(/Version\/([0-9\.]+)/i)[1]')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:18.085Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - stack:
+  searchBrowserVersion (https://ssl.pstatic.net/tveta/libs/assets/js/pc/main/min/pc.veta.core.min.js?20180330:1)
+  init (https://ssl.pstatic.net/tveta/libs/assets/js/pc/main/min/pc.veta.core.min.js?20180330:1)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:18.159Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'new NBP_CORP.Nimp()')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-01-03T06:33:18.159Z] Session [ecf61ff0-2df2-11ea-a622-0b513187061a] - page.onError - stack:
+  (anonymous function) (undefined:15)
+
+  phantomjs://platform/console++.js:263 in error
