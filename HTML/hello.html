@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1. 주석 -->
+    <!-- 주석 -->
+    <!-- ctrl + / -->
+
+    <!-- 2. 레이아웃 시맨틱 태그 -->
+    <header id='header'>header</header>
+    <nav>nav</nav>
+    <aside>aside</aside>
+    <section>section</section>
+    <article>article</article>
+    <footer>footer</footer>
+
+    <!-- 3. 레이아웃 Non-시맨틱 태그 -->
+    <div>div</div>
+
+    <!-- 4. 제옥 -->
+    <h1>Header 1</h1>
+    <h2>Header 2</h2>
+    <h3>Header 3</h3>
+    <h4>Header 4</h4>
+    <h5>Header 5</h5>
+    <h6>Header 6</h6>
+
+    <!-- 5. 본문 -->
+    <!-- P 태그는 문장단위로 쓸때 많이 사용 -->
+    <p>본문 입니다. <br>
+        본문 입니다.</p> 
+    <hr>
+    <!-- hr : 구분할수 있는 괄호 선을 추가해줌 -->
+    <p>본문 입니다. <br>
+        본문 입니다.</p> 
+
+    <!-- 6. 글자 꾸미기 -->
+        <b>굵은 글씨</b><br>
+        <strong>굵은 글씨 - 시맨틱</strong><br>
+        <i>기울임</i><br>
+        <em>기울임 - 시맨틱</em><br>
+        <del>취소선</del><br>
+        
+    <!-- 7. 목록 -->
+    <!-- 순서있는 목록 -->
+    <ol>
+        <li>첫번쨰</li>
+        <li>두번째</li>
+        <li>세번째</li>
+    </ol>
+    <!-- 순서 없는 목록 -->
+    <ul>
+        <li>사과</li>
+        <li>배</li>
+        <li>딸기</li>
+    </ul>
+
+    <!-- 8. 링크 태그 (a) -->
+    <!-- 절대 경로(주소) -->
+    <a href="https://google.com" target="_self">Go to google</a><br>
+    <!-- 상대 경로 , target="_blank" 하면 새탭에서 열리게 됨-->
+    <a href="bye.html" target="_blank">Go to Bye!</a><br>
+    <!-- id를 지정한 태그 위치 -->
+    <a href="#header">Go to Header</a><br>
+    <!-- 이메일 -->
+    <a href="mailto:astakara48@gmail.com">Go to E-mail</a><br>
+
+    <!-- 9. 미디어 태그 -->
+    <!-- 이미지 -->
+    <!-- src : 상대/절대경로 -->
+    <img src="images/ocean.jpg" width="300px" alt="바다"><br>
+    <!-- 비디오 -->
+    <video src=""></video><br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/k2fXZQA0ipo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></body>
+
+    <!-- 10. form (양식) -->
+    <form action="">
+        <!-- text -->
+        <input type="text"><br>
+        <!-- password -->
+        <input type="password"><br>
+        <!-- number -->
+        <input type="number"><br>
+        <!-- date -->
+        <input type="date"><br>
+        <!-- radio -->
+        <input type="radio" name='hello'><br>
+        <input type="radio" name='hello'><br>
+        <input type="radio" name='hello'><br>
+        <!-- submit -->
+        <input type="submit">
+    </form>
+</html>
