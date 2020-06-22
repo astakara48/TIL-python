@@ -4,9 +4,10 @@
 
 <h1>Article New</h1>
 
-<form action="" method='POST'>
+<form action="" method='POST' enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form }}
+    <!-- form 안에 생성되는 것들을 각각 p tag로 감싸겠다. -->
+    {{ form.as_p }} 
     <!-- <label for="title">제목</label>
     <input type="text" name="title"><br><br>
     <label for="content">내용</label><br>

@@ -1,9 +1,20 @@
 from django.db import models
+from imagekit.models import ProcessedImageField
+from imagekit.processors import Thumbnail
 
 # Create your models here.
 class Article(models.Model):
     title = models.CharField(max_length=10)
     content = models.TextField()
+    # image = models.ImageField(blank=True) # None(null) vs 0, '
+    image = ProcessedImageField(
+                        blank=True,
+                        processors=[
+                            Thumbnail(300, 300)
+                        ], # 어떤 가공을 할지
+                        format='JPEG', # 이미지 포멧(jpeg, jpg, png...)
+                        options={'qulity':90} # 이미지 포멧 관련 옵션
+        )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
