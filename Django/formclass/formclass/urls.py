@@ -1,4 +1,4 @@
-"""fromclass URL Configuration
+"""formclass URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -23,8 +23,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', include('articles.urls')),
     path('accounts/', include('accounts.urls')),
-    path('',lambda r: redirect('articles:index'), name='root'),
+    path('', lambda r: redirect('articles:index'), name='root')
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+# views.py (X)
+# def ???(request):
+#     return redirect('articles:index')
+
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT)
 

@@ -1,44 +1,53 @@
 from django.shortcuts import render, redirect
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
 def index(request):
     articles = Article.objects.all()
     context = {
-        'articles' : articles,
+        'articles': articles,
     }
     return render(request, 'articles/index.html', context)
 
+ # 로그인 검증
+ # o -> new 함수 실행
+ # x -> login 페이지로 보냄
+@login_required
 def new(request):
     if request.method == 'POST':
         # Database에 저장
         # 1. 요청에 실려온 data 꺼내오기
         # title = request.POST.get('title')
         # content = request.POST.get('content')
-        # image = request.FILES.get('image)
-        # ArticleForm(request.POST, request.FILES) 내부에 POST, FILES 항상 순서 지키기
+        # image = request.FILES.get('image')
         form = ArticleForm(request.POST, request.FILES)
         
-        # 2-1.DATA 유효성 검사
+        # 2-1. data 유효성 검사
         if form.is_valid():
             # (ModelForm) 2-2. Database에 저장
-            article = form.save()
+            article = form.save(commit=False)
+            article.user = request.user
+            # article.user_id = request.user.pk
+            article.save()
             # # 2-2. 검증된 data 꺼내오기
             # title = form.cleaned_data.get('title')
             # content = form.cleaned_data.get('content')
             # # 2-3. Database에 저장
             # article = Article(title=title, content=content)
             # article.save()
-            # 3. 저장된 data를 확인할 수 있는 곳으로 안내?
+            # 3. 저장된 data를 확인할 수 있는 곳으로 안내
             return redirect('articles:detail', article.pk)
+
     else: # GET
-        # 작성 약식 보여주기
+        # 작성 양식 보여주기
         form = ArticleForm()
     context = {
-        'form' : form,
+        'form': form,
     }
     return render(request, 'articles/new.html', context)
+
 
 def detail(request, pk):
     # Database에서 data 가져오기
@@ -48,97 +57,135 @@ def detail(request, pk):
     comment_form = CommentForm()
 
     context = {
-        'article' : article,
-        'comment_form' : comment_form,
+        'article': article,
+        'comment_form': comment_form,
     }
     return render(request, 'articles/detail.html', context)
 
+
+@login_required
 def delete(request, pk): # POST
     article = Article.objects.get(pk=pk)
+
+    if request.user != article.user:
+        return redirect('articles:detail', article.pk)
+
     if request.method == 'POST':
         article.delete()
     return redirect('articles:index')
 
+
+@login_required
 def edit(request, pk):
-    # 1. Databse에서 data가져오기
+    # 1. Database에서 data 가져오기
     article = Article.objects.get(pk=pk)
 
-    if request.method == 'POST':
-        # data 수정
+    if request.user != article.user:
+        return redirect('articles:detail', article.pk)
 
+    if request.method == 'POST':
+        # data 수정!
+        
         # (ModelForm) 2-1. form에 data 집어넣기 + instance와 연결
         form = ArticleForm(request.POST, instance=article)
-        
-        # # 2-1. from에 data 집어넣기(검증 목적)
+        # # 2-1. form에 data 집어넣기(검증 목적)
         # form = ArticleForm(request.POST)
-        # 2-2. data 유효성 검사
+        # 2-2. form에서 data 유효성 검사
         if form.is_valid():
-        # (ModelForm) 2-3. Databse에 저장
+            # (ModelForm) 2-3. Database에 저장
             article = form.save()
-        # # 2-3. 검증된 data를 반영하기(저장)
-        #     article.title = form.cleaned_data.get('title')
-        #     article.content = form.cleaned_data.get('content')
-        #     article.save()
-        # 3. 저장된 내용을 확인할 수 있는 페이지로 안내
+            # # 2-3. 검증된 data를 반영하기(저장)
+            # article.title = form.cleaned_data.get('title')
+            # article.content = form.cleaned_data.get('content')
+            # article.save()
+            # 3. 저장된 내용을 확인할 수 있는 페이지로 안내
             return redirect('articles:detail', article.pk)
-    else:
-        # 수정 양식 보여주기
+    else:  
+        # 수정 양식 보여주기!
         # (ModelForm) 2. Form에 data 채워 넣기
         form = ArticleForm(instance=article)
-        article = Article.objects.get(pk=pk)
-        # 2. Form에 data 채워 넣기
+        # # 2. Form에 data 채워 넣기
         # form = ArticleForm(initial=article.__dict__)
-
     context = {
-        'form' : form,
+        'form': form,
     }
     return render(request, 'articles/edit.html', context)
 
-def comments_new(request, article_pk):
-    # 1. 요청이 PSOT인지 점검
-    if request.method == "POST":
-        # 2. form에 data를 집어 넣기(유효성 검사가 목적)
-        # request.POST => { 'content' : '내용'}
+
+@login_required
+def comments_new(request, article_pk): # POST
+    # 1. 요청이 POST인지 점검
+    if request.method == 'POST':
+        # 2. form에 data를 집어넣기 (목적 == 유효성 검사)
+        # request.POST #=> { 'content': '와 댓글!' }
         form = CommentForm(request.POST)
-        # 3. 유효성 검사를시행합니다.
+        # 3. form에서 유효성 검사를 시행
         if form.is_valid():
-            # 4. database에 저장
+            # 4. 통과하면 database에 저장(?)
             comment = form.save(commit=False)
             # 4-1. article 정보 주입
             comment.article_id = article_pk
+            # 4-2. user 정보 넣기
+            comment.user = request.user
             comment.save()
     # 5. 생성된 댓글을 확인할 수 있는 곳으로 안내
     return redirect('articles:detail', article_pk)
 
-def comments_delete(request, article_pk, pk):
+
+@login_required
+def comments_delete(request, article_pk, pk): # POST
     # 0. 요청이 POST인지 점검
-    if request.method == 'POST':
-    # 1. PK를 가지고 삭제하려는 data 꺼내오기
-        comment = Comment.objects.get(pk=pk)
-    # 2. 삭제
+    # 1. pk를 가지고 삭제하려는 data 꺼내오기
+    comment = Comment.objects.get(pk=pk)
+
+    if request.user != comment.user:
+        return redirect('articles:detail', comment.article.pk)
+
+    if request.method == 'POST':    
+        # 2. 삭제
         comment.delete()
-    # 3. 삭제 되었는지 확인 가능한 곳으로 안내
+    # 3. 삭제되었는지 확인 가능한 곳으로 안내
     return redirect('articles:detail', article_pk)
 
-def comments_edit(request, article_pk, pk):
+
+@login_required
+def comments_edit(request, article_pk, pk): # GET, POST
     # Database에서 수정하려 하는 data 가져오기
     comment = Comment.objects.get(pk=pk)
-    # 0. 요청 종류가 POSt 인지 GET인지 점검
-    if request.method == "POST":
-        # 실제로 수정
-        # 1. form에 '넘어온 data' 집어넣기 + '수정하려는 data' 집어넣기
+
+    if request.user != comment.user:
+        return redirect('articles:detail', comment.article.pk)
+    
+    # 0. 요청의 종류가 POST인지 GET인지 점검
+    if request.method == 'POST':
+        # 실제로 수정!
+        # 1. form에 '넘어온 data' & '수정하려는 data' 집어넣기
         form = CommentForm(request.POST, instance=comment)
         # 2. 유효성 검사
-        if form.is_valid:
+        if form.is_valid():
             # 3. 검사를 통과했다면, save
-            form.save()
+            comment = form.save()
             # 4. 변경된 결과 확인하는 곳으로 안내
             return redirect('articles:detail', article_pk)
     else:
-        # 수정 양식 보여주기
+        # 수정 양식 보여주기!
         # 1. form class 초기화(생성)
         form = CommentForm(instance=comment)
+
     context = {
-        'form' : form,
-    }   
+        'form': form,
+    }
     return render(request, 'articles/comments_edit.html', context)
+
+def like(request, pk):
+    user = request.user
+    article = Article.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        if user in article.like_users.all():
+            article.like_users.remove(user)
+        
+        else:
+            article.like_users.add(user)
+
+    return redirect('article:detail', pk)

@@ -1,5 +1,4 @@
 from django.urls import path
-from django.urls import path, include
 from . import views
 
 app_name = 'articles'
@@ -10,8 +9,9 @@ urlpatterns = [
     path('<int:pk>/', views.detail, name='detail'),
     path('<int:pk>/delete/', views.delete, name='delete'),
     path('<int:pk>/edit/', views.edit, name='edit'),
+    path('<int:pk>/like/', views.like, name='like'), # join_table [C]reate
     # /articles/1/comments/new/
     path('<int:article_pk>/comments/new/', views.comments_new, name='comments_new'),
     path('<int:article_pk>/comments/<int:pk>/delete/', views.comments_delete, name='comments_delete'),
-    path('<int:article_pk>/comments/<int:pk>/edit/', views.comments_edit, name='comments_edit')
+    path('<int:article_pk>/comments/<int:pk>/edit/', views.comments_edit, name='comments_edit'),
 ]
